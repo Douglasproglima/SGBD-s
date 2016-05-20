@@ -2,7 +2,7 @@
 Scripts e dicas referente a Banco de Dados relacionais;
 
 ###Oracle
-##Dicas 01
+###Dicas 01
 
 Criar banco de dados:
 create tablespace DADOS
@@ -32,7 +32,7 @@ CREATE USER NOME_DO_USUARIO IDENTIFIED BY SENHA_DE_ACESSO
    default TableSpace NOME_DA_TABLESPACE
    Temporary TableSpace TEMP
 
-##Dicas 02
+###Dicas 02
 
 /*Comandos para criar as TableSpaces*/
 create TableSpace TSDNomeDoBanco 
@@ -66,6 +66,15 @@ __________________________________________
 DROP USER PORTOBELLO CASCADE;
 DROP TABLESPACE TSDCODIL INCLUDING CONTENTS AND DATAFILES;
 DROP TABLESPACE TSICODIL INCLUDING CONTENTS AND DATAFILES;
+
+###Dicas 03 - SQL para listar o nomes das tablesSpaces
+
+SELECT DISTINCT TABLESPACE_NAME NOME, 'DADOS' AS TIPO FROM USER_TABLES
+UNION ALL
+SELECT DISTINCT TABLESPACE_NAME NOME, 'INDICES' AS TIPO FROM USER_INDEXES
+
+--RETORNA O NOME DAS TABLESPACES VINCULADO AO ARQUIVO .DBF
+select tablespace_name,file_name from dba_data_files 
 
 
 
