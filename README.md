@@ -156,7 +156,10 @@ service mysql start
 ###__________________________________________
 ###Postgre
 
+###Macros que podem ser adicionados ao PgaAdmin
+
 --LOCALIZAR FUNCTION
+
 SELECT 
  pc.oid AS prooid,
  proname,
@@ -179,6 +182,7 @@ pc.prolang = pl.oid
 
 
 --DESCOBRE DESCRICAO LABEL DO CAMPO
+
 select db_syscampo.codcam,db_syscampo.nomecam,
        db_syscampo.conteudo,
        db_syscampo.descricao,db_syscampo.rotulo,
@@ -196,6 +200,7 @@ where db_syscampo.nomecam = 'e60_numerol';
 
 
 --DESCOBRE DE QUAL TABELA A CONSTRAINT PERTENCE
+
 SELECT n.nspname as sckema,
 r.relname as tabela_pai,
 conname, conrelid::pg_catalog.regclass as tabela_filha,
@@ -207,14 +212,17 @@ where c.conname='orcreserva_ae_coddot_fk'
 
 
 --LIMIT 10
+
 select * from $SELECTION$ LIMIT 10
 
 --SEQUENCIA
+
 SELECT * FROM information_schema.sequences
  WHERE upper(sequence_name) like '%$SELECTION$%';
 
 
 --LISTA CAMPOS DE UMA TABELA SEM TIPO
+
 SELECT a.relname AS Tabela, b.attname AS Campo
 FROM pg_class a
 JOIN pg_attribute b ON (b.attrelid = a.relfilenode)
@@ -223,6 +231,7 @@ WHERE  b.attstattarget = -1 AND
        OR TRIM(UPPER(a.relname))= '$SELECTION$');
 
 --LOCALIZA CAMPO NA TABELA
+
 SELECT a.relname AS Tabela, b.attname AS Campo
 FROM pg_class a
 JOIN pg_attribute b ON (b.attrelid = a.relfilenode)
@@ -232,6 +241,7 @@ WHERE  b.attstattarget = -1 AND
 
 
 --ESTRUTURA TABELA
+
 SELECT table_catalog as banco,table_schema as schema,table_name as tabela,
        ordinal_position as posicao,
        column_name as campo,is_nullable,data_type as tipo,
@@ -242,6 +252,7 @@ SELECT table_catalog as banco,table_schema as schema,table_name as tabela,
 
 
 --DESCOBRE PK DE UMA TABELA
+
 SELECT a.attname AS chave_pk
 FROM pg_class c
   INNER JOIN pg_attribute a ON (c.oid = a.attrelid)
@@ -253,6 +264,7 @@ WHERE
     OR TRIM(UPPER(c.relname))= '$SELECTION');
 
 --TRIGGERS NA TABELA
+
 select trigger_schema as "Schema",event_object_table as "tabela",
       trigger_name as "trigger",event_manipulation as "evento",
       action_timing as "modificador" ,
@@ -262,7 +274,8 @@ WHERE (TRIM(LOWER(event_object_table))= '$SELECTION$'
     OR TRIM(UPPER(event_object_table))= '$SELECTION$');
 
 
---DESCRIÇÃO TABELA E-CIDADE
+--DESCRIÇÃO TABELA
+
 select trim(db_sysarquivo.nomearq) as nomearq,
        trim(db_sysarquivo.descricao) as descricao
 from db_sysarquivo
@@ -271,6 +284,7 @@ where (TRIM(LOWER(nomearq))= '$SELECTION$'
 
 
 --LOCALIZA CAMPO NA TABELA
+
 select c.schemaname||'.'||
 c.relname as schema_tabela,
 a.attname as "Campo",
@@ -283,6 +297,7 @@ order by c.relname, a.attname
 
 
 --USUARIO CONECTADOS
+
 select datname,
 pid,
 usename,
