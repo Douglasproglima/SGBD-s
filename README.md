@@ -55,12 +55,12 @@ GRANT RESOURCE TO NomeDoBanco;
 GRANT DBA TO NomeDoBanco;
 CONNECT NomeDoBanco/USUARIO@XE;  
 
-_____________________________________________________________________
+_________________________________________
 /*CRIA DIRETORIO PARA REALIZAÇÃO DO EXPORTAR DUMP VIA EXP OU EXPDP*/
 CREATE DIRECTORY DUMPS AS 'D:\Dumps\';
 GRANT READ, WRITE ON DIRECTORY Dumps TO ENGEMAN;
 
-_____________________________________________________________________
+__________________________________________
 /*DELETA USUÁRIO DO ORACLE, SEGUIDO DAS TABLESPACES*/
 
 DROP USER PORTOBELLO CASCADE;
@@ -69,7 +69,7 @@ DROP TABLESPACE TSICODIL INCLUDING CONTENTS AND DATAFILES;
 
 
 
-###____________________________________________________________________________________________________
+###__________________________________________
 ###SQL Server
 
 Cursos OnLine Free:
@@ -96,7 +96,7 @@ Views: https://programandodotnet.wordpress.com/2011/09/26/sql-server-views/
 
 
 
-###____________________________________________________________________________________________________
+###__________________________________________
 ###MySQl
 Dicas para utilizar o mysqldump para fazer o backup corretamente e isolado do seu banco de dados mysql, seja por algum crash, alguma atualização ou modificação mal feita no servidor, você pode em ultimo caso recorrer ao backup manual dos arquivos, podendo assim você logo apos restaurar os arquivo em uma nova configuração de mysql:
 
@@ -123,12 +123,12 @@ service mysql start
 
 
 
-###____________________________________________________________________________________________________
+###__________________________________________
 ###Postgre
 
 
 
 
 
-###____________________________________________________________________________________________________
+###__________________________________________
 ###Firebird
