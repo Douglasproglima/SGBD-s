@@ -11,7 +11,7 @@ Cursos OnLine Free:
 Este curso vai deste a linguagem até as abordagens de gerenciamento de um banco de dados (DBA): http://juliobattisti.com.br/artigos/sqlserver2005/principal.asp
 Este curso vai deste a linguagem até as abordagens de gerenciamento de um banco de dados (DBA): https://www.microsoft.com/learning/en-us/course.aspx?translate=pt&ID=40364A
 
-Para que tem uma grana extra e internet boa, essa é a melhor escola do Brasil para cursos em nossa Área: http://www.impactaonline.com.br/curso/SQL-2012-Modulo-I-online.php
+Para quem tem uma grana extra e internet boa, essa é a melhor escola do Brasil para cursos em nossa Área: http://www.impactaonline.com.br/curso/SQL-2012-Modulo-I-online.php
 
 Tutoriais Sobre Select
 Create database e principais nomenclaturas técnicas do banco de dados: https://programandodotnet.wordpress.com/2011/07/20/sql-server-conceitos-gerais/
@@ -30,7 +30,27 @@ Views: https://programandodotnet.wordpress.com/2011/09/26/sql-server-views/
 
 
 ###MySQl
+Dicas para utilizar o mysqldump para fazer o backup corretamente e isolado do seu banco de dados mysql, seja por algum crash, alguma atualização ou modificação mal feita no servidor, você pode em ultimo caso recorrer ao backup manual dos arquivos, podendo assim você logo apos restaurar os arquivo em uma nova configuração de mysql:
 
+1- Faça backup dos bancos de dados:
+cp -rf /var/lib/mysql/ ~/backup_mysql
+
+2 – Reconfigure seu novo servidor
+
+3 – Pare o servidor
+service mysql stop
+
+4 – Copie de volta os bancos de dados que deseja, normalmente estes sao separados por pastas
+cp -rf ~/mysql_backup/meu_db /var/lib/mysql/
+
+5 – Caso voce possua algum banco de dados InnoDB, voce tambem tera que copiar a pasta ibdata1.
+cp -rf ~/mysql_backup/ibdata1 /var/lib/mysql/
+
+6 – Restaure as permissoes dos arquivos
+chown mysql:mysql /var/lib/mysql/* -R
+
+7 – Reinicie o servidor, e provavelmente estará tudo funcionando
+service mysql start
 
 
 ###Postgre
