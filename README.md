@@ -162,3 +162,36 @@ service mysql start
 
 ###__________________________________________
 ###Firebird
+
+###Principais Funções p/ Manipular Datas
+
+select sysdate() as data_completa,
+Current_Date as data_sem_hora,Current_Time as so_horas,
+extract(day from current_date)as dia,
+extract(month from current_date)as mes,
+extract(year from current_date)as ano,
+extract(minute from Current_Time)as minuto,
+extract(second from Current_Time)as segundo,
+cast((current_timestamp + (1.0/24.0)) as timestamp) soma_1_hora,
+case when EXTRACT(WEEKDAY FROM current_date)=0 then 'DOMINGO'
+     when EXTRACT(WEEKDAY FROM current_date)=2 then 'SEGUNDA'
+     when EXTRACT(WEEKDAY FROM current_date)=2 then 'TERÇA'
+     when EXTRACT(WEEKDAY FROM current_date)=3 then 'QUARTA'
+     when EXTRACT(WEEKDAY FROM current_date)=4 then 'QUINTA'
+     when EXTRACT(WEEKDAY FROM current_date)=5 then 'SEXTA'
+     else 'SÁBADO' end semana,
+current_date-EXTRACT(DAY FROM current_date) + 1 primeiro_dia_mes,
+current_date - EXTRACT(DAY FROM current_date) + 32 -
+EXTRACT(DAY FROM current_date - EXTRACT(DAY FROM current_date) + 32) as ultimo_dia_mes,
+current_date - EXTRACT(DAY FROM current_date) + 33 -
+EXTRACT(DAY FROM current_date - EXTRACT(DAY FROM current_date) + 32)as primeiro_dia_proximo_mes
+from RDB$Database
+
+
+###Primeiro e último dia de uma data
+
+select cast(:DataInicial as timestamp) - EXTRACT(DAY FROM cast(:DataInicial as timestamp)) + 33 -
+EXTRACT(DAY FROM cast(:DataInicial as timestamp)- EXTRACT(DAY FROM cast(:DataInicial as timestamp)) + 32),
+cast(:DataInicial as timestamp) - EXTRACT(DAY FROM cast(:DataInicial as timestamp)) + 32 -
+EXTRACT(DAY FROM cast(:DataInicial as timestamp) - EXTRACT(DAY FROM cast(:DataInicial as timestamp)) + 32) as ultimo dia
+from cfggeral
