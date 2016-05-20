@@ -81,6 +81,26 @@ select tablespace_name,file_name from dba_data_files
 ###__________________________________________
 ###SQL Server
 
+Script de um cursor em SQL Server, para concatenar uma string (e-mails):
+//Deleta o último ponto e vírgula do retorno do SQL
+DECLARE @EMAIL VARCHAR(8000)
+DECLARE @LISTEMAIL VARCHAR(8000)
+
+SET @LISTEMAIL='';
+
+DECLARE TESTE CURSOR FOR
+  SELECT RETORNO FROM CFGUSR WHERE U_MAILSSOS = 'S'
+OPEN TESTE
+  FETCH NEXT FROM TESTE INTO @EMAIL
+  
+  WHILE @@FETCH_STATUS = 0  BEGIN 
+    SET @LISTEMAIL = @LISTEMAIL+@EMAIL+';';
+    FETCH NEXT FROM TESTE INTO @EMAIL
+  END
+CLOSE TESTE
+DEALLOCATE TESTE
+SELECT LEFT(@LISTEMAIL, LEN(@LISTEMAIL)-1) AS EMAILS
+
 Cursos OnLine Free:
 Este curso vai deste a linguagem até as abordagens de gerenciamento de um banco de dados (DBA): http://juliobattisti.com.br/artigos/sqlserver2005/principal.asp
 Este curso vai deste a linguagem até as abordagens de gerenciamento de um banco de dados (DBA): https://www.microsoft.com/learning/en-us/course.aspx?translate=pt&ID=40364A
