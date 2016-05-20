@@ -194,4 +194,4 @@ select cast(:DataInicial as timestamp) - EXTRACT(DAY FROM cast(:DataInicial as t
 EXTRACT(DAY FROM cast(:DataInicial as timestamp)- EXTRACT(DAY FROM cast(:DataInicial as timestamp)) + 32),
 cast(:DataInicial as timestamp) - EXTRACT(DAY FROM cast(:DataInicial as timestamp)) + 32 -
 EXTRACT(DAY FROM cast(:DataInicial as timestamp) - EXTRACT(DAY FROM cast(:DataInicial as timestamp)) + 32) as ultimo dia
-from cfggeral
+from TabelaMalaca
