@@ -2,9 +2,74 @@
 Scripts e dicas referente a Banco de Dados relacionais;
 
 ###Oracle
+##Dicas 01
+
+Criar banco de dados:
+create tablespace DADOS
+     datafile
+      'C:\oraclexe\app\oracle\oradata\XE\DADOS.dbf' size 100m autoextend on next 50m maxsize 500m
+     online
+      permanent
+      extent management local autoallocate
+     segment space management auto;
+
+
+alter tablespace INDECES offline
+
+drop tablespace DADOS including contents 
+
+create tablespace DADOS
+     datafile
+      'C:\oraclexe\oradata\XE\DADOS.dbf' size 100m autoextend on next 50m maxsize 500m
+     online
+      permanent
+      extent management local autoallocate
+     segment space management auto;
 
 
 
+CREATE USER NOME_DO_USUARIO IDENTIFIED BY SENHA_DE_ACESSO
+   default TableSpace NOME_DA_TABLESPACE
+   Temporary TableSpace TEMP
+
+##Dicas 02
+
+/*Comandos para criar as TableSpaces*/
+create TableSpace TSDNomeDoBanco 
+   DataFile 'C:\oraclexe\app\oracle\oradata\XE\TSDCodil.DBF' SIZE 30M Reuse
+   AutoExtend On Next 512k;
+
+create TableSpace TSINomeDoBanco 
+   DataFile 'C:\oraclexe\app\oracle\oradata\XE\TSICodil.DBF' SIZE 30M Reuse
+   AutoExtend On Next 512k;
+
+
+/*Comandos para criar o usuário*/
+CREATE USER UsuarioNome IDENTIFIED BY USUARIO
+   default TableSpace TSDNomeDoBanco
+   Temporary TableSpace TEMP;
+   
+/*Comandos para dar acessos ao usuário e teste de conexão*/ 
+GRANT CONNECT TO NomeDoBanco;
+GRANT RESOURCE TO NomeDoBanco;
+GRANT DBA TO NomeDoBanco;
+CONNECT NomeDoBanco/USUARIO@XE;  
+
+_____________________________________________________________________
+/*CRIA DIRETORIO PARA REALIZAÇÃO DO EXPORTAR DUMP VIA EXP OU EXPDP*/
+CREATE DIRECTORY DUMPS AS 'D:\Dumps\';
+GRANT READ, WRITE ON DIRECTORY Dumps TO ENGEMAN;
+
+_____________________________________________________________________
+/*DELETA USUÁRIO DO ORACLE, SEGUIDO DAS TABLESPACES*/
+
+DROP USER PORTOBELLO CASCADE;
+DROP TABLESPACE TSDCODIL INCLUDING CONTENTS AND DATAFILES;
+DROP TABLESPACE TSICODIL INCLUDING CONTENTS AND DATAFILES;
+
+
+
+###____________________________________________________________________________________________________
 ###SQL Server
 
 Cursos OnLine Free:
@@ -29,6 +94,9 @@ Principais Funções SQL Server: https://programandodotnet.wordpress.com/2011/12
 Views: https://programandodotnet.wordpress.com/2011/09/26/sql-server-views/
 
 
+
+
+###____________________________________________________________________________________________________
 ###MySQl
 Dicas para utilizar o mysqldump para fazer o backup corretamente e isolado do seu banco de dados mysql, seja por algum crash, alguma atualização ou modificação mal feita no servidor, você pode em ultimo caso recorrer ao backup manual dos arquivos, podendo assim você logo apos restaurar os arquivo em uma nova configuração de mysql:
 
@@ -53,8 +121,14 @@ chown mysql:mysql /var/lib/mysql/* -R
 service mysql start
 
 
+
+
+###____________________________________________________________________________________________________
 ###Postgre
 
 
 
+
+
+###____________________________________________________________________________________________________
 ###Firebird
