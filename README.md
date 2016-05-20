@@ -83,6 +83,7 @@ select tablespace_name,file_name from dba_data_files
 
 Script de um cursor em SQL Server, para concatenar uma string (e-mails):
 //Deleta o último ponto e vírgula do retorno do SQL
+
 DECLARE @EMAIL VARCHAR(8000)
 DECLARE @LISTEMAIL VARCHAR(8000)
 
