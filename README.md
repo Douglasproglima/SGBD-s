@@ -128,6 +128,22 @@ Views: https://programandodotnet.wordpress.com/2011/09/26/sql-server-views/
 
 ###__________________________________________
 ###MySQl
+
+###Dicas 01 - Restaurar Backup no Windows
+1 - Acessar o cmd como admistrardor;
+
+
+2 - Acessar o diretório onde está instalado o MySQL, exemplo cd "C:\Arquivos de Programas\MySQL\MySQL Server 5.6\bin\";
+
+
+3 - Digite o comando mysql –h + o host do servidor Mysql (exemplo : mysql5.inetweb.com.br) –u + conta de usuário -p –D + nome do banco de dados < caminho 
+
+
+(exemplo : c:\backup.sql) aonde está o arquivo de Backup e pressione a tecla ENTER . (exemplo : mysql –h mysql5.inetweb.com.br –u inetweb –p -D base_de_dados < c:\backup )
+
+
+
+###Dicas 02
 Dicas para utilizar o mysqldump para fazer o backup corretamente e isolado do seu banco de dados mysql, seja por algum crash, alguma atualização ou modificação mal feita no servidor, você pode em ultimo caso recorrer ao backup manual dos arquivos, podendo assim você logo apos restaurar os arquivo em uma nova configuração de mysql:
 
 1- Faça backup dos bancos de dados:
