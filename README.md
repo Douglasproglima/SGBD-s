@@ -124,7 +124,9 @@ Principais Funções SQL Server: https://programandodotnet.wordpress.com/2011/12
 Views: https://programandodotnet.wordpress.com/2011/09/26/sql-server-views/
 
 
-###Função INITCAP() Torna a Primeira Letra de cada Palavra em Maíscula 
+###Função INITCAP() Torna a Primeira Letra de cada Palavra em Maíscula:
+
+
 CREATE FUNCTION [dbo].[InitCap](@StrValue AS VARCHAR(150))
 RETURNS VARCHAR(150)
 AS
